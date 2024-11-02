@@ -4,13 +4,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NombreProyecto</title>
+    <title>@ViewData["Title"] - Crunchy</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="~/img/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=League+Spartan&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        NombreProyecto
+        <nav class="main-nav">
+            <ul class="ul__nav">
+                <img src="~/img/logo.png" alt="Logo">
+                <li class="item-nav"><a href='@Url.Action("", "Home")'>Home</a></li>
+                <li class="item-nav"><a href='@Url.Action("", "Home")'>Categorias</a></li>
+                <li class="item-nav"><a href='@Url.Action("", "Home")'>Favoritos</a></li>
+                <li class="item-nav"><a href='@Url.Action("", "Home")'>Almacén</a></li>
+                <div class="contenedor-buscador">
+                    <div>
+                        <span class="material-symbols-outlined icono-busqueda">search</span>
+                        <input type="text" class="busqueda" placeholder="Buscar...">
+                    </div>
+                    <span class="material-symbols-outlined icono-filtro">restaurant</span>
+                </div>
+                <div class="perfil">
+                    <p>Lorem</p>
+                    <img src="https://thumbs.dreamstime.com/b/sin-foto-ni-icono-de-imagen-en-blanco-cargar-im%C3%A1genes-o-falta-marca-no-disponible-pr%C3%B3xima-se%C3%B1al-silueta-naturaleza-simple-marco-215973362.jpg" alt="Perfil">
+                </div>
+            </ul>
+        </nav>
     </header>
 
     <main role="main">
@@ -18,7 +42,17 @@
     </main>
 
     <footer>
-        &copy; @DateTime.Now.Year - NombreProyecto
+        <div class="footer-arriba">
+            <img src="~/img/Logo-Iso.png" alt="Logo">
+            <div>
+                <img src="https://1000marcas.net/wp-content/uploads/2019/11/insta-logo.png" alt="Instagram">
+                <img src="https://www.pngarts.com/files/10/Vector-Facebook-Logo-Black-And-White-PNG-Transparent-Image.png" alt="Facebook">
+                <img src="https://i0.wp.com/friaryschool.co.uk/wp-content/uploads/2023/11/large-x-logo.png.twimg_.1920-e1699539508422.png?ssl=1" alt="X">
+            </div>
+        </div>
+        <div class="footer-abajo">
+            <p>&copy; @DateTime.Now.Year Crunchy - Todos los derechos reservados</p>
+        </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
