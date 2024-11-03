@@ -85,7 +85,7 @@ footer img{
 }
 .main-nav a, .main-nav p{
   display: inline-block;
-  font-size: 26px;
+  font-size: 22px;
 }
 .main-nav .item-nav a, .main-nav p{
   padding: 5px 11px;
@@ -103,8 +103,8 @@ footer img{
   margin: 0;
 }
 .main-nav .ul__nav> img{
-  height: 108px;
-  width: 320px;
+  height: 90px;
+  width: auto;
 }
 
 .main-nav .item-nav a {
@@ -139,11 +139,51 @@ footer img{
   align-items: center;
 }
 .perfil img{
-  width: 85px;
-  height: 85px;
+  width: 80px;
+  height: 80px;
   border-radius: 45px;
   border: 1px solid #e3e3e3;
 }
+
+.contenedor-buscador {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  background: #a56542; 
+  border: 2px solid #fbe3c6; 
+  border-radius: 40px; 
+  padding: 10px 20px; 
+  max-width: 380px;
+  width: 100%;
+}
+.contenedor-buscador div{
+  display: flex;
+  align-items: center;
+}
+.contenedor-buscador div > *{
+  margin: 0 2px;
+}
+.icono-busqueda, .icono-filtro {
+  color: #fbe3c6; 
+  font-size: 24px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' -25,
+  'opsz' 48
+}
+.busqueda {
+  border: none; 
+  outline: none; 
+  background: transparent; 
+  color: #fbe3c6; 
+  font-size: 18px; 
+  padding: 5px;
+}
+.contenedor-buscador input::placeholder{
+  color: #fbe3c6; ;
+}
+
 
 .header {
   display: flex;
@@ -183,45 +223,6 @@ footer img{
 
 }
 
-.contenedor-buscador {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between;
-  background: #a56542; 
-  border: 2px solid #fbe3c6; 
-  border-radius: 40px; 
-  padding: 10px 20px; 
-  max-width: 400px;
-  width: 100%;
-}
-.contenedor-buscador div{
-  display: flex;
-  align-items: center;
-}
-.contenedor-buscador div > *{
-  margin: 0 2px;
-}
-.icono-busqueda, .icono-filtro {
-  color: #fbe3c6; 
-  font-size: 24px;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 300,
-  'GRAD' -25,
-  'opsz' 48
-}
-.busqueda {
-  border: none; 
-  outline: none; 
-  background: transparent; 
-  color: #fbe3c6; 
-  font-size: 20px; 
-  padding: 5px;
-}
-.contenedor-buscador input::placeholder{
-  color: #fbe3c6; ;
-}
-
 .main h2{
   margin: 0;
   margin-bottom: 10px;
@@ -259,7 +260,7 @@ footer img{
   border: 1px solid black;
 }
 .parte-abajo-card h3{
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 600;
   margin: 0;
 }
@@ -296,9 +297,9 @@ footer img{
   margin: 0 5px;
 }
 .material-symbols-outlined.estrella {
-  font-size: 55px;
+  font-size: 50px;
   color: #F9B233;
-  margin: -8px;
+  margin: -6px;
   font-variation-settings:
   'FILL' 1,
   'wght' 100,
@@ -306,11 +307,11 @@ footer img{
   'opsz' 48
 }
 .material-symbols-outlined.compartir{
-  font-size: 44px;
+  font-size: 40px;
   color: #7E290E;
 }
 .material-symbols-outlined.like{
-  font-size: 44px;
+  font-size: 40px;
   color: #F00;
 }
 .material-symbols-outlined.tiempo, .material-symbols-outlined.dificultad{
