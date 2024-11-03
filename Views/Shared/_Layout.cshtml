@@ -7,35 +7,40 @@
     <title>@ViewData["Title"] - Crunchy</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="shortcut icon" href="~/img/favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=League+Spartan&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/869dc8f5ef.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="main-nav">
-            <ul class="ul__nav">
-                <img src="~/img/logo.png" alt="Logo">
-                <li class="item-nav"><a href='@Url.Action("", "Home")'>Home</a></li>
-                <li class="item-nav"><a href='@Url.Action("", "Home")'>Categorias</a></li>
-                <li class="item-nav"><a href='@Url.Action("", "Home")'>Favoritos</a></li>
-                <li class="item-nav"><a href='@Url.Action("", "Home")'>Almacén</a></li>
-                <div class="contenedor-buscador">
-                    <div>
-                        <span class="material-symbols-outlined icono-busqueda">search</span>
-                        <input type="text" class="busqueda" placeholder="Buscar...">
+    @if (ViewBag.OcultarHeader != true)
+    {
+        <header>
+            <nav class="main-nav">
+                <ul class="ul__nav">
+                    <img src="~/img/logo.png" alt="Logo">
+                    <li class="item-nav"><a href='@Url.Action("", "Home")'>Home</a></li>
+                    <li class="item-nav"><a href='@Url.Action("Categorias", "Home")'>Categorias</a></li>
+                    <li class="item-nav"><a href='@Url.Action("Favoritos", "Home")'>Favoritos</a></li>
+                    <li class="item-nav"><a href='@Url.Action("", "Home")'>Almacén</a></li>
+                    <div class="contenedor-buscador">
+                        <div>
+                            <span class="material-symbols-outlined icono-busqueda">search</span>
+                            <input type="text" class="busqueda" placeholder="Buscar...">
+                        </div>
+                        <span class="material-symbols-outlined icono-filtro">restaurant</span>
                     </div>
-                    <span class="material-symbols-outlined icono-filtro">restaurant</span>
-                </div>
-                <div class="perfil">
-                    <p>Lorem</p>
-                    <img src="https://thumbs.dreamstime.com/b/sin-foto-ni-icono-de-imagen-en-blanco-cargar-im%C3%A1genes-o-falta-marca-no-disponible-pr%C3%B3xima-se%C3%B1al-silueta-naturaleza-simple-marco-215973362.jpg" alt="Perfil">
-                </div>
-            </ul>
-        </nav>
-    </header>
+                    <div class="perfil">
+                        <p>Lorem</p>
+                        <img src="https://thumbs.dreamstime.com/b/sin-foto-ni-icono-de-imagen-en-blanco-cargar-im%C3%A1genes-o-falta-marca-no-disponible-pr%C3%B3xima-se%C3%B1al-silueta-naturaleza-simple-marco-215973362.jpg" alt="Perfil">
+                    </div>
+                </ul>
+            </nav>
+        </header>
+    }
+
 
     <main role="main">
         @RenderBody()

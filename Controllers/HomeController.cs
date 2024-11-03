@@ -17,4 +17,18 @@ public class HomeController : Controller
     {
         return View("Home");
     }
+    public IActionResult Categorias()
+    {
+        return View();
+    }
+    public IActionResult Favoritos()
+    {
+        return View();
+    }
+
+    public IActionResult Log()
+    {
+        ViewBag.OcultarHeader = true;
+        return View();
+    }
 }

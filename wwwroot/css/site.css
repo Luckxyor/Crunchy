@@ -32,6 +32,11 @@ body {
   background: #FDE2B3;
 }
 
+header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 footer {
   margin-top: auto;
   text-align: center;
@@ -47,7 +52,7 @@ footer img{
 }
 .footer-arriba>div>img{
   margin: 0 15px;
-  height: 40px;
+  height: 35px;
   width: auto;
 }
 .footer-arriba{
@@ -69,11 +74,8 @@ footer img{
 
 .main-nav{
   padding: 10px;
-  position: sticky;
   width: 100%;
   background-color: #7E290E;
-  top: 0;
-  z-index: 10;
   box-shadow: 0 4px 20px #b06906dc ;
 }
 .main-nav .ul__nav{
@@ -201,7 +203,12 @@ footer img{
 }
 .icono-busqueda, .icono-filtro {
   color: #fbe3c6; 
-  font-size: 24px; 
+  font-size: 24px;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' -25,
+  'opsz' 48
 }
 .busqueda {
   border: none; 
@@ -215,14 +222,6 @@ footer img{
   color: #fbe3c6; ;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-}
-
 .main h2{
   margin: 0;
   margin-bottom: 10px;
@@ -231,4 +230,317 @@ footer img{
 }
 .main h2>span{
   font-weight: 600;
+}
+
+.card{
+  width: 380px;
+  height: 555px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px #f79b1a5b;
+  text-align: center;
+}
+.card>img{
+  width: 100%;
+  height: 260px;
+  border-radius: 10px 10px 0 0;
+}
+.parte-abajo-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 295px;
+  padding: 10px;
+}
+.parte-abajo-card img{
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  border: 1px solid black;
+}
+.parte-abajo-card h3{
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+.parte-abajo-card p{
+  margin: 0;
+}
+.parte-abajo-card h5, .parte-abajo-card p{
+  font-size: 20px;
+}
+.caracteristicas-card{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.caracteristicas-card h5 {
+  margin: 5px 0;
+  font-weight: 400;
+}
+.social-card{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.estrellas{
+  display: flex;
+  align-items: center;
+}
+.der-social{
+  display: flex;
+  align-items: center;
+}
+.der-social>*{
+  margin: 0 5px;
+}
+.material-symbols-outlined.estrella {
+  font-size: 55px;
+  color: #F9B233;
+  margin: -8px;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 100,
+  'GRAD' -25,
+  'opsz' 48
+}
+.material-symbols-outlined.compartir{
+  font-size: 44px;
+  color: #7E290E;
+}
+.material-symbols-outlined.like{
+  font-size: 44px;
+  color: #F00;
+}
+.material-symbols-outlined.tiempo, .material-symbols-outlined.dificultad{
+  font-size: 44px;
+}
+
+
+
+.main-login{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FCD8A7;
+}
+
+.container h1 {
+  font-weight: 600;
+  font-size: 70px;
+}
+
+.form-container form>h1{
+  margin: 0;
+}
+.form-container form>* {
+  margin: 20px 0;
+}
+
+.container p {
+  font-size: 40px;
+  font-weight: 100;
+}
+
+.container span {
+  font-size: 32px;
+}
+
+.container a {
+  color: #228be6;
+  font-size: 32PX;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+#red {
+  color: red;
+}
+
+.container {
+  background: #FCD8A7;
+  border-radius: 50px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0, 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 1330px;
+  max-width: 100%;
+  min-height: 800px;
+}
+
+.form-container form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social-container {
+  margin: 20px 0;
+}
+
+.social-container a {
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 77px;
+  width: 77px;
+}
+
+.form-container input {
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  height: 60px;
+  font-size: 32px;
+  border: 1px solid #000;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  width: 300px;
+  height: 64px;
+  border-radius: 40px;
+  border: 1px solid #CA4117;
+  background: #CA4117;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 100;
+  transition: transform 80ms ease-in;
+}
+
+#lila {
+  background: #be4bdb;
+  border: 1px solid #be4bdb;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background: transparent;
+  border-color: #fff;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.overlay {
+  background: linear-gradient(to right, #E64E1F, #F79A1A) no-repeat 0 0 / cover;
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: tranform 0.6s ease-in-out;
+}
+
+.overlay-panel {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.overlay-left {
+  background: linear-gradient(to right, #E64E1F, #F79A1A) no-repeat 0 0 / cover;
+  transition: translateX(-20%);
+}
+
+.overlay-panel>*{
+  margin: 40px 0;
+}
+
+/* Animation */
+
+/* Move signin to the right */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+/* Move overlay to left */
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+/* Bring sign up over sign in */
+.container.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Move overlay back to right */
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
 }
