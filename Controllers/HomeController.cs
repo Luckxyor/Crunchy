@@ -17,11 +17,20 @@ public class HomeController : Controller
     {
         return View("Home");
     }
+    public IActionResult Home()
+    {
+        return View();
+    }
     public IActionResult Categorias()
     {
         return View();
     }
     public IActionResult Favoritos()
+    {
+        return View();
+    }
+
+    public IActionResult Almacen()
     {
         return View();
     }
