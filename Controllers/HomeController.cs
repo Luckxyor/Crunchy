@@ -15,7 +15,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View("Home");
+        ViewBag.OcultarHeader = true;
+        return View();
     }
     public IActionResult Home()
     {
@@ -23,6 +24,7 @@ public class HomeController : Controller
     }
     public IActionResult Categorias()
     {
+        ViewBag.ListaCategorias=BD.ListarCategorias();
         return View();
     }
     public IActionResult Favoritos()
@@ -35,9 +37,10 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Log()
+    public IActionResult Log(string mensajeError)
     {
         ViewBag.OcultarHeader = true;
+        ViewBag.mensajeError = mensajeError;
         return View();
     }
 }

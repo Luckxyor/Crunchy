@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -23,8 +24,8 @@
                     <img src="~/img/logo.png" alt="Logo">
                     <li class="item-nav"><a href='@Url.Action("Home", "Home")'>Home</a></li>
                     <li class="item-nav"><a href='@Url.Action("Categorias", "Home")'>Categorías</a></li>
-                    <li class="item-nav"><a href='@Url.Action("Favoritos", "Home")'>Favoritos</a></li>
-                    <li class="item-nav"><a href='@Url.Action("Almacen", "Home")'>Almacén</a></li>
+                    <li class="item-nav"><a href='@Url.Action("Favoritos", "Home", new {idUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Favoritos</a></li>
+                    <li class="item-nav"><a href='@Url.Action("Almacen", "Home", new {idUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Almacén</a></li>
                     <div class="contenedor-buscador">
                         <div>
                             <span class="material-symbols-outlined icono-busqueda">search</span>
@@ -33,8 +34,8 @@
                         <span class="material-symbols-outlined icono-filtro">restaurant</span>
                     </div>
                     <div class="perfil">
-                        <p>Lorem</p>
-                        <img src="https://thumbs.dreamstime.com/b/sin-foto-ni-icono-de-imagen-en-blanco-cargar-im%C3%A1genes-o-falta-marca-no-disponible-pr%C3%B3xima-se%C3%B1al-silueta-naturaleza-simple-marco-215973362.jpg" alt="Perfil">
+                        <p>@HttpContextAccessor.HttpContext.Session.GetString("Username")</p>
+                        <img src='@HttpContextAccessor.HttpContext.Session.GetString("Foto")' alt="Perfil">
                     </div>
                 </ul>
             </nav>

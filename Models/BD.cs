@@ -6,17 +6,33 @@ namespace Crunchy.Models;
 static class BD{
     private static string _connectionString="Server=localhost; DataBase=CrunchyBD; Trusted_Connection=True;";
 
-    public static void AgregarUsuario(string UserName, string Email, string Contraseña){
-        string sqlInsert="Insert into Usuario (UserName, Email, Contraseña) values (@pUserName, @pEmail, @pContraseña)";
+    public static void AgregarUsuario(string Username, string Email, string Contraseña){
+        string sqlInsert="Insert into Usuarios (Username, Email, Contraseña) values (@pUsername, @pEmail, @pContraseña)";
         using (SqlConnection db=new SqlConnection(_connectionString)){
-            db.Execute(sqlInsert, new{pUserName=UserName, pEmail=Email, pContraseña=Contraseña});
+            db.Execute(sqlInsert, new{pUsername=Username, pEmail=Email, pContraseña=Contraseña});
         }
     }
 
-    public static void InicioSesion(string UserOEmail, string Contraseña){
+    public static Usuario InicioSesion(string userOEmail, string contraseña){
+        Usuario usuario=null;
+        using(SqlConnection db=new SqlConnection(_connectionString)){
+            string sql= "Select * from Usuarios where (Username=@pUserOEmail or Email=@pUserOEmail) and Contraseña=@pContraseña";
+            usuario=db.QueryFirstOrDefault<Usuario>(sql, new{pUserOEmail=userOEmail, pContraseña=contraseña});
+        }
+        return usuario;
     }
 
     public static void ActualizarContraseña(string UserOEmail, string Contraseña){
         
     }
+
+    public static List<Categoria> ListarCategorias(){
+        List<Categoria> ListaCategorias = new List<Categoria>();
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql="Select * from Categorias";
+            ListaCategorias = db.Query<Categoria>(sql).ToList();
+        }
+        return ListaCategorias;
+    }
+
 }

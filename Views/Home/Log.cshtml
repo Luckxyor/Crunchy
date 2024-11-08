@@ -19,14 +19,14 @@
                     </a>
                 </div>
                 <span>o usa tu email como registro</span>
-                <input type="text" placeholder="Name" name="UserName" required />
+                <input type="text" placeholder="Name" name="Username" required />
                 <input type="email" placeholder="Email" name="Email" required />
                 <input type="password" placeholder="Password" name="Contraseña" required oninput=""/>
                 <button type="submit">Registrar</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action='@Url.Action("Sesion", "Account")' method="post">
                 <h1>Iniciar Sesión</h1>
                 <div class="social-container">
                     <a href="#" class="social">
@@ -40,8 +40,11 @@
                     </a>
                 </div>
                 <span>o usa tu email</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Username o Email" name="userOEmail"/>
+                <input type="password" placeholder="Password" name="contraseña"/>
+                @if(ViewBag.mensajeError!=null){
+                    <p class="mensaje-error">@ViewBag.mensajeError</p>
+                }
                 <a href="#">Olvidaste tu contraseña?</a>
                 <button>Iniciar sesión</button>
             </form>

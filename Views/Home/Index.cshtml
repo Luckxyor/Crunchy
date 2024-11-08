@@ -1,8 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-
-<div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
+<div class="main-index">
+    <div class="overlay-index"></div>
+    <div class="blob-container">
+        <svg class="blob" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+            <path d="M50,150 C50,50 100,30 150,30 C200,30 220,70 250,70 
+                    C280,70 300,50 330,70 C360,90 370,120 350,150 
+                    C330,180 350,200 330,220 C310,240 280,230 250,240 
+                    C220,250 200,270 170,270 C140,270 120,250 100,230 
+                    C80,210 50,250 50,150 Z" />
+        </svg>
+        <div class="adentro-blob">
+            <h1>Una página.<br>Miles de recetas.<br>Solo para <span>VOS</span>.</h1>
+            <p>Descubrí una nueva forma de cocinar, hecha a tu medida</p>
+            <div class="parte-boton">
+                <button class="boton-index" onclick="window.location.href='@Url.Action("Log", "Home")'">Iniciar sesión</button>
+                <button class="boton-index" onclick="window.location.href='@Url.Action("Log", "Home")'">Registrarse</button>
+            </div>
+        </div>
+    </div>
 </div>
