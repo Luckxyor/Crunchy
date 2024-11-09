@@ -37,8 +37,11 @@ header{
   top: 0;
   z-index: 10;
 }
+main{
+  margin-bottom: 50px;
+}
 footer {
-  margin-top: 50px;
+  margin-top: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -144,7 +147,9 @@ footer img{
   border-radius: 50%;
   border: 1px solid #FEF0DC;
 }
-
+.buscador-historial{
+  width: 350px;
+}
 .contenedor-buscador {
   display: flex; 
   align-items: center; 
@@ -152,8 +157,7 @@ footer img{
   background: #fde2b34f; 
   border: 2px solid #FEF0DC; 
   border-radius: 40px; 
-  padding: 10px 20px; 
-  max-width: 380px;
+  padding: 10px 17px; 
   width: 100%;
 }
 .contenedor-buscador div{
@@ -163,16 +167,19 @@ footer img{
 .contenedor-buscador div > *{
   margin: 0 2px;
 }
+.icono-filtro{
+  transform: rotate(90deg);
+}
 .icono-busqueda, .icono-filtro {
   color: #fbe3c6; 
-  font-size: 24px;
+  font-size: 30px !important;
   font-variation-settings:
   'FILL' 0,
   'wght' 300,
   'GRAD' -25,
   'opsz' 48
 }
-.busqueda {
+#busqueda {
   border: none; 
   outline: none; 
   background: transparent; 
@@ -182,6 +189,47 @@ footer img{
 }
 .contenedor-buscador input::placeholder{
   color: #fbe3c6; ;
+}
+input::placeholder{
+  user-select: none;
+}
+.historial{
+  font-family: 'Fredoka';
+  display: none;
+  width: 350px;
+  padding: 10px;
+  background-color: #F4B39F;
+  border-radius: 15px;
+  position: absolute;
+}
+.historial-activo{
+  display: block;
+}
+.item-historial{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.historial h3{
+  font-weight: 400;
+  font-size: 27px;
+  margin: 10px 0;
+}
+.historial p{
+  margin: 0 8px;
+  padding: 0;
+  color: #000;
+  padding-bottom: 1.5px;
+}
+.historial .material-symbols-outlined{
+  color: #525252;
+}
+.izq-item-historial{
+  display: flex;
+  align-items: center;
+}
+.tiempo-historial{
+  font-size: 10px;
 }
 
 .index-nav{
@@ -310,10 +358,12 @@ footer img{
 .der-social>*{
   margin: 0 5px;
 }
+.material-symbols-outlined{
+  user-select: none;
+}
 .material-symbols-outlined.estrella {
   font-size: 40px;
   color: #F9B233;
-  
   font-variation-settings:
   'wght' 100,
   'GRAD' -25,
@@ -579,13 +629,13 @@ button.ghost {
 .categorias{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 50px;
 }
 
 .contenedor-catego{
   width: 100%; 
-  max-width: 450px;
+  max-width: 420px;
   border-radius: 15px;
 }
 

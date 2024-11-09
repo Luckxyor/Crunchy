@@ -38,10 +38,35 @@ static class BD{
     public static List<Receta> ListarRecetasFav(int IdUsuario){
         List<Receta> ListaRecetasFav = new List<Receta>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sql="EXEC ObtenerRecetasFavUsuario @pIdUsuario;";
+            string sql="Select Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)) as Foto, avg(Estrellas) as Calificacion, Descripcion, cast(Paises.Foto as varchar(max)) as FotoPais, Diminutivo as DiminutivoPais, Tiempo, NombreDificultad as Dificultad from Receta inner join Dificultad on Dificultad.IdDificultad=Receta.IdDificultad inner join Paises on Paises.IdPais=Receta.IdPais inner join Review on Review.IdReceta=Receta.IdReceta inner join Favoritos on Favoritos.IdReceta=Receta.IdReceta where Favoritos.IdUsuario=@pIdUsuario group by Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)), Descripcion,cast(Paises.Foto as varchar(max)), Diminutivo, Tiempo, NombreDificultad";
             ListaRecetasFav = db.Query<Receta>(sql, new{pIdUsuario=IdUsuario}).ToList();
         }
         return ListaRecetasFav;
+    }
+
+    public static void AgregarFavorito(int IdUsuario, int IdReceta)
+    {
+        string sqlInsert="Insert into Favoritos (IdUsuario, IdReceta) values (@pIdUsuario, @pIdReceta)";
+        using (SqlConnection db=new SqlConnection(_connectionString)){
+            db.Execute(sqlInsert, new{pIdUsuario=IdUsuario, pIdReceta=IdReceta});
+        }
+    }
+
+    public static void SacarFavorito(int IdUsuario, int IdReceta)
+    {
+        string sqlDelete="Delete from Favoritos where IdUsuario=@pIdUsuario and IdReceta=@pIdReceta";
+        using (SqlConnection db=new SqlConnection(_connectionString)){
+            db.Execute(sqlDelete, new{pIdUsuario=IdUsuario, pIdReceta=IdReceta});
+        }
+    }
+
+    public static List<Receta> ObtenerResultados(string busqueda){
+        List<Receta> ListaBusqueda = new List<Receta>();
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql="Select Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)) as Foto, avg(Estrellas) as Calificacion, Descripcion, cast(Paises.Foto as varchar(max)) as FotoPais, Diminutivo as DiminutivoPais, Tiempo, NombreDificultad as Dificultad from Receta inner join Dificultad on Dificultad.IdDificultad=Receta.IdDificultad inner join Paises on Paises.IdPais=Receta.IdPais inner join Review on Review.IdReceta=Receta.IdReceta where NombreReceta like @pBusqueda group by Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)), Descripcion, cast(Paises.Foto as varchar(max)), Diminutivo, Tiempo, NombreDificultad";
+            ListaBusqueda = db.Query<Receta>(sql, new{pBusqueda="%"+busqueda+"%"}).ToList();
+        }
+        return ListaBusqueda;
     }
 
 }

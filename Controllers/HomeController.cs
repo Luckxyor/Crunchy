@@ -44,4 +44,28 @@ public class HomeController : Controller
         ViewBag.mensajeError = mensajeError;
         return View();
     }
+
+    public IActionResult Resultados(string busqueda){
+        ViewBag.ResultadosBusqueda=BD.ObtenerResultados(busqueda);
+        return View();
+    }
+
+    [HttpPost]
+    public JsonResult AgregarFavorito([FromBody] FavoritoRequest request)
+    {
+        BD.AgregarFavorito(request.IdUsuario, request.IdReceta);
+        return Json(new { success = true });
+    }
+
+    [HttpPost]
+    public JsonResult SacarFavorito([FromBody] FavoritoRequest request)
+    {
+        BD.SacarFavorito(request.IdUsuario, request.IdReceta);
+        return Json(new { success = true });
+    }
+}
+public class FavoritoRequest
+{
+    public int IdUsuario { get; set; }
+    public int IdReceta { get; set; }
 }

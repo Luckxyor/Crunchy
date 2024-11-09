@@ -26,12 +26,26 @@
                     <li class="item-nav"><a href='@Url.Action("Categorias", "Home")'>Categorías</a></li>
                     <li class="item-nav"><a href='@Url.Action("Favoritos", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Favoritos</a></li>
                     <li class="item-nav"><a href='@Url.Action("Almacen", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Almacén</a></li>
-                    <div class="contenedor-buscador">
-                        <div>
-                            <span class="material-symbols-outlined icono-busqueda">search</span>
-                            <input type="text" class="busqueda" placeholder="Buscar...">
+                    <div class="buscador-historial">
+                        <div class="contenedor-buscador">
+                            <div>
+                                <span class="material-symbols-outlined icono-busqueda">search</span>
+                                <form action='@Url.Action("Resultados", "Home")' autocomplete="off">
+                                    <input type="text" id="busqueda" placeholder="Buscar..." name="busqueda">
+                                </form>
+                            </div>
+                            <span class="material-symbols-outlined icono-filtro">restaurant</span>
                         </div>
-                        <span class="material-symbols-outlined icono-filtro">restaurant</span>
+                        <div class="historial">
+                            <h3>Recientes</h3>
+                            <div class="item-historial">
+                                <div class="izq-item-historial">
+                                    <span class="material-symbols-outlined tiempo-historial">schedule</span>
+                                    <p>Empanadas</p>
+                                </div>
+                                <span class="material-symbols-outlined">arrow_insert</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="perfil">
                         <p>@HttpContextAccessor.HttpContext.Session.GetString("Username")</p>

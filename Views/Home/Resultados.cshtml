@@ -1,10 +1,10 @@
 @{
-    ViewData["Title"] = "Favoritos";
+    ViewData["Title"] = "Resultados";
 }
 @inject IHttpContextAccessor HttpContextAccessor
 <div class="main">
-    <h1 class="titulo">Favoritos</h1>
-    @foreach(Receta receta in ViewBag.ListaRecetasFav){
+    <h1 class="titulo">Resultados de la busqueda</h1>
+    @foreach(Receta receta in ViewBag.ResultadosBusqueda){
         <div class="card">
             <img src="@receta.Foto" alt="">
             <div class="parte-abajo-card">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="der-social">
                         <span class="material-symbols-outlined compartir">share</span>
-                        <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
                     </div>
                 </div>
                 <h3>@receta.NombreReceta</h3>
