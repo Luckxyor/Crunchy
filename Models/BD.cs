@@ -35,4 +35,13 @@ static class BD{
         return ListaCategorias;
     }
 
+    public static List<Receta> ListarRecetasFav(int IdUsuario){
+        List<Receta> ListaRecetasFav = new List<Receta>();
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql="EXEC ObtenerRecetasFavUsuario @pIdUsuario;";
+            ListaRecetasFav = db.Query<Receta>(sql, new{pIdUsuario=IdUsuario}).ToList();
+        }
+        return ListaRecetasFav;
+    }
+
 }

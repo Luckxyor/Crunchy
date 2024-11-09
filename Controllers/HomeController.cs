@@ -27,8 +27,9 @@ public class HomeController : Controller
         ViewBag.ListaCategorias=BD.ListarCategorias();
         return View();
     }
-    public IActionResult Favoritos()
+    public IActionResult Favoritos(int IdUsuario)
     {
+        ViewBag.ListaRecetasFav=BD.ListarRecetasFav(IdUsuario);
         return View();
     }
 

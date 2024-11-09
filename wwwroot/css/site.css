@@ -72,27 +72,27 @@ footer img{
 
 
 
-.main-nav{
+.main-nav, .index-nav{
   padding: 10px;
   width: 100%;
   background-color: #7E290E;
   box-shadow: 0 4px 20px #b06906dc ;
 }
-.main-nav .ul__nav{
+.ul__nav{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.main-nav a, .main-nav p{
+.ul__nav a, .ul__nav p{
   display: inline-block;
   font-size: 22px;
 }
-.main-nav .item-nav a, .main-nav p{
+.item-nav a, .ul__nav p{
   padding: 5px 11px;
   color: #FEF0DC;
   text-decoration: none;
 }
-.main-nav a:hover{
+.ul__nav a:hover{
   color: #FBD195;
 }
 .ul__nav{ 
@@ -102,19 +102,19 @@ footer img{
   padding: 0;
   margin: 0;
 }
-.main-nav .ul__nav> img{
+.ul__nav> img{
   height: 90px;
   width: auto;
 }
 
-.main-nav .item-nav a {
+.ul__nav .item-nav a {
   padding: 2px 5px;
   color: #e3e3e3;
   text-decoration: none;
   position: relative;
 }
 
-.main-nav .item-nav a::after {
+.ul__nav .item-nav a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -125,12 +125,12 @@ footer img{
   transition: width 0.3s ease, left 0.3s ease;
 }
 
-.main-nav .item-nav a:hover::after {
+.ul__nav .item-nav a:hover::after {
   width: 95%;
   left: 2.5%;
 }
 
-.main-nav a:hover {
+.ul__nav a:hover {
   color: #FBD195;
 }
 
@@ -184,7 +184,11 @@ footer img{
   color: #fbe3c6; ;
 }
 
-
+.index-nav{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 .header {
   display: flex;
   align-items: center;
@@ -307,14 +311,25 @@ footer img{
   margin: 0 5px;
 }
 .material-symbols-outlined.estrella {
-  font-size: 50px;
+  font-size: 40px;
   color: #F9B233;
-  margin: -6px;
+  
   font-variation-settings:
-  'FILL' 1,
   'wght' 100,
   'GRAD' -25,
   'opsz' 48
+}
+.material-symbols-outlined.estrella.estrella-mediollena{
+  margin: -10px;
+  font-size: 60px;
+}
+.material-symbols-outlined.estrella.estrella-llena{
+  font-variation-settings:
+  'FILL' 1 !important
+}
+.material-symbols-outlined.estrella.estrella-vacia{
+  font-variation-settings:
+  'FILL' 0 !important
 }
 .material-symbols-outlined.compartir{
   font-size: 40px;
@@ -558,7 +573,7 @@ button.ghost {
 }
 
 .container.right-panel-active .overlay-right {
-  transform: translateX(20%);
+  transform: translateX(0%);
 }
 
 .categorias{
@@ -625,8 +640,8 @@ button.ghost {
 }
 
 .blob-container {
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   position: relative;
 }
 .blob {
@@ -663,10 +678,10 @@ button.ghost {
   font-size: 30px;
 }
 .main-index{
-  height: 100vh;
+  height: 90vh;
   display: flex;
-  justify-content: center;
-  align-items: end;
+  justify-content: end;
+  align-items: center;
   margin: 0;
   background-image: url('/img/index-img.png');
   background-size: cover;
