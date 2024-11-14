@@ -38,6 +38,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Perfil()
+    {
+        return View();
+    }
+
     public IActionResult Log(string mensajeError)
     {
         ViewBag.OcultarHeader = true;

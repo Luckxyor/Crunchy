@@ -41,13 +41,21 @@
                             <div class="item-historial">
                                 <div class="izq-item-historial">
                                     <span class="material-symbols-outlined tiempo-historial">schedule</span>
-                                    <p>Empanadas</p>
+                                    <p>Shawarma</p>
                                 </div>
                                 <span class="material-symbols-outlined">arrow_insert</span>
                             </div>
+                            <div class="item-historial">
+                                <div class="izq-item-historial">
+                                    <span class="material-symbols-outlined tiempo-historial">schedule</span>
+                                    <p>Milanesa con puré</p>
+                                </div>
+                                <span class="material-symbols-outlined">arrow_insert</span>
+                            </div>
+                            <h3>Busquedas recomendadas</h3>
                         </div>
                     </div>
-                    <div class="perfil">
+                    <div class="perfil" onclick="window.location.href='@Url.Action("Perfil", "Home")'">
                         <p>@HttpContextAccessor.HttpContext.Session.GetString("Username")</p>
                         <img src='@HttpContextAccessor.HttpContext.Session.GetString("Foto")' alt="Perfil">
                     </div>

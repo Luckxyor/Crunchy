@@ -76,7 +76,7 @@ footer img{
 
 
 .main-nav, .index-nav{
-  padding: 10px;
+  padding: 5px;
   width: 100%;
   background-color: #7E290E;
   box-shadow: 0 4px 20px #b06906dc ;
@@ -106,7 +106,7 @@ footer img{
   margin: 0;
 }
 .ul__nav> img{
-  height: 90px;
+  height: 82px;
   width: auto;
 }
 
@@ -201,6 +201,7 @@ input::placeholder{
   background-color: #F4B39F;
   border-radius: 15px;
   position: absolute;
+  margin: 5px 0;
 }
 .historial-activo{
   display: block;
@@ -213,7 +214,7 @@ input::placeholder{
 .historial h3{
   font-weight: 400;
   font-size: 27px;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 .historial p{
   margin: 0 8px;
@@ -227,6 +228,7 @@ input::placeholder{
 .izq-item-historial{
   display: flex;
   align-items: center;
+  margin: 5px 0;
 }
 .tiempo-historial{
   font-size: 10px;
@@ -294,6 +296,39 @@ input::placeholder{
   justify-content: space-evenly;
 }
 
+.card-horizontal{
+  display: flex;
+  align-items: center;
+  width: 95%;
+  height: 250px;
+}
+.card-horizontal img{
+  width: 28%;
+  height: 100%;
+}
+.card-horizontal>*:not(img){
+  margin: 20px;
+}
+.card-horizontal .estrellas-card-hor{
+  display: flex;
+  align-items: center;
+  
+}
+.caracteristicas-card-hor{
+  display: flex;
+  align-items: center;
+}
+.caracteristicas-card-hor div{
+  margin: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.izq-card-hor{
+  display: flex;
+  flex-direction: column;
+}
+
 .card{
   width: 380px;
   height: 555px;
@@ -315,11 +350,13 @@ input::placeholder{
   height: 295px;
   padding: 10px;
 }
-.parte-abajo-card img{
+.img-pais{
   height: 44px;
   width: 44px;
   border-radius: 22px;
   border: 1px solid black;
+  background-size: cover; 
+  background-position: center;
 }
 .parte-abajo-card h3{
   font-size: 35px;

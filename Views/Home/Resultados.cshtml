@@ -5,47 +5,17 @@
 <div class="main">
     <h1 class="titulo">Resultados de la busqueda</h1>
     @foreach(Receta receta in ViewBag.ResultadosBusqueda){
-        <div class="card">
+        <div class="card-horizontal">
             <img src="@receta.Foto" alt="">
-            <div class="parte-abajo-card">
-                <div class="social-card">
-                    <div class="estrellas">
-                        @{
-                            int estrellasRestantes = 5;
-                            int estrellasLlenas = (int)receta.Calificacion;
-                            bool tieneMediaEstrella = (receta.Calificacion - estrellasLlenas) >= 0.5;
-
-                            for (int i = 0; i < estrellasLlenas; i++)
-                            {
-                                <span class="material-symbols-outlined estrella estrella-llena">star</span>
-                            }
-
-                            if (tieneMediaEstrella)
-                            {
-                                <span class="material-symbols-outlined estrella estrella-mediollena">star_half</span>
-                                estrellasRestantes--;
-                            }
-
-                            for (int i = 0; i < estrellasRestantes - estrellasLlenas; i++)
-                            {
-                                <span class="material-symbols-outlined estrella estrella-vacia">star</span>
-                            }
-                        }
-                    </div>
-                    <div class="der-social">
-                        <span class="material-symbols-outlined compartir">share</span>
-                        @if(receta.EsFavorito==1){
-                            <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
-                        }else{
-                            <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
-                        }
-                    </div>
-                </div>
+            <div class="izq-card-hor">
                 <h3>@receta.NombreReceta</h3>
-                <p>@receta.Descripcion</p>
-                <div class="caracteristicas-card">
+                <div class="estrellas-card-hor">
+                    <span class="material-symbols-outlined estrella estrella-llena">star</span>
+                    <p>@receta.Calificacion</p>
+                </div>
+                <div class="caracteristicas-card-hor">
                     <div>
-                        <img src="@receta.FotoPais" alt="">
+                        <div class="img-pais" style="background-image: url('@Url.Content(receta.FotoPais)');"></div>
                         <h5>@receta.DiminutivoPais</h5>
                     </div>
                     <div>
@@ -58,6 +28,16 @@
                     </div>
                 </div>
             </div>
+            <p>@receta.Descripcion</p>
+            <div class="social-card-hor">
+                <span class="material-symbols-outlined compartir">share</span>
+                @if(receta.EsFavorito==1){
+                    <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                }else{
+                    <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                }
+            </div>
+            
         </div>
     }
 </div>
