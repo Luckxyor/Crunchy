@@ -34,7 +34,11 @@
                     </div>
                     <div class="der-social">
                         <span class="material-symbols-outlined compartir">share</span>
-                        <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        @if(receta.EsFavorito==1){
+                            <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        }else{
+                            <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        }
                     </div>
                 </div>
                 <h3>@receta.NombreReceta</h3>

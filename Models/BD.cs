@@ -38,7 +38,7 @@ static class BD{
     public static List<Receta> ListarRecetasFav(int IdUsuario){
         List<Receta> ListaRecetasFav = new List<Receta>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sql="Select Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)) as Foto, avg(Estrellas) as Calificacion, Descripcion, cast(Paises.Foto as varchar(max)) as FotoPais, Diminutivo as DiminutivoPais, Tiempo, NombreDificultad as Dificultad from Receta inner join Dificultad on Dificultad.IdDificultad=Receta.IdDificultad inner join Paises on Paises.IdPais=Receta.IdPais inner join Review on Review.IdReceta=Receta.IdReceta inner join Favoritos on Favoritos.IdReceta=Receta.IdReceta where Favoritos.IdUsuario=@pIdUsuario group by Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)), Descripcion,cast(Paises.Foto as varchar(max)), Diminutivo, Tiempo, NombreDificultad";
+            string sql="EXEC sp_FavoritosRecetas @pIdUsuario;";
             ListaRecetasFav = db.Query<Receta>(sql, new{pIdUsuario=IdUsuario}).ToList();
         }
         return ListaRecetasFav;
@@ -60,11 +60,11 @@ static class BD{
         }
     }
 
-    public static List<Receta> ObtenerResultados(string busqueda){
+    public static List<Receta> ObtenerResultados(string busqueda, int? idUsuario){
         List<Receta> ListaBusqueda = new List<Receta>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sql="Select Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)) as Foto, avg(Estrellas) as Calificacion, Descripcion, cast(Paises.Foto as varchar(max)) as FotoPais, Diminutivo as DiminutivoPais, Tiempo, NombreDificultad as Dificultad from Receta inner join Dificultad on Dificultad.IdDificultad=Receta.IdDificultad inner join Paises on Paises.IdPais=Receta.IdPais inner join Review on Review.IdReceta=Receta.IdReceta where NombreReceta like @pBusqueda group by Receta.IdReceta, NombreReceta, cast(Receta.Foto as varchar(max)), Descripcion, cast(Paises.Foto as varchar(max)), Diminutivo, Tiempo, NombreDificultad";
-            ListaBusqueda = db.Query<Receta>(sql, new{pBusqueda="%"+busqueda+"%"}).ToList();
+            string sql="EXEC sp_ObtenerResultados @pBusqueda, @pIdUsuario;";
+            ListaBusqueda = db.Query<Receta>(sql, new {pBusqueda="%"+busqueda+"%", pIdUsuario=idUsuario}).ToList();
         }
         return ListaBusqueda;
     }

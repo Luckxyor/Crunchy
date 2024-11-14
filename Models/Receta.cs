@@ -10,5 +10,6 @@ class Receta{
     public string Dificultad {get; set;}
     public string Ingredientes {get; set;}
     public string Pasos {get; set;}
+    public int EsFavorito {get; set;}
     public Receta(){}
 }
