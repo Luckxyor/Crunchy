@@ -142,8 +142,8 @@ footer img{
   align-items: center;
 }
 .perfil img{
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 1px solid #FEF0DC;
 }
@@ -757,7 +757,7 @@ button.ghost {
   font-weight: 400;
   background: none;
   border: 3px solid #CA4117;
-  transition: background 0.4s ease-in;
+  transition: background 0.3s ease-in;
 }
 .boton-index:hover{
   background-color: #CA4117;

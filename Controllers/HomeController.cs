@@ -50,22 +50,13 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost]
-    public JsonResult AgregarFavorito([FromBody] FavoritoRequest request)
+    public void AgregarFavorito(int IdReceta, int IdUsuario)
     {
-        BD.AgregarFavorito(request.IdUsuario, request.IdReceta);
-        return Json(new { success = true });
+        BD.AgregarFavorito(IdUsuario, IdReceta);
     }
 
-    [HttpPost]
-    public JsonResult SacarFavorito([FromBody] FavoritoRequest request)
+    public void SacarFavorito(int IdReceta, int IdUsuario)
     {
-        BD.SacarFavorito(request.IdUsuario, request.IdReceta);
-        return Json(new { success = true });
+        BD.SacarFavorito(IdUsuario, IdReceta);
     }
-}
-public class FavoritoRequest
-{
-    public int IdUsuario { get; set; }
-    public int IdReceta { get; set; }
 }

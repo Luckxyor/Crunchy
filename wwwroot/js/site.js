@@ -20,16 +20,22 @@ signInButton.addEventListener('click', () =>
 );
 
 
-function cambiarLike(element, IdUsuario, IdReceta) {
+function cambiarLike(element, idUsuario, idReceta) {
     element.classList.toggle('like-lleno');
-    let accion = element.classList.contains('like-lleno') ? 'AgregarFavorito' : 'SacarFavorito';
+    let accion;
+    if (element.classList.contains('like-lleno')) {
+        accion = 'AgregarFavorito';
+    } else {
+        accion = 'SacarFavorito';
+    }
 
-    fetch(`/Home/${accion}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ IdUsuario: IdUsuario, IdReceta: IdReceta })
-    });
+    $.ajax(
+        {
+            url:`/Home/${accion}`,
+            data:{IdReceta: idReceta, IdUsuario:idUsuario},
+            type: 'GET',
+            dataType: 'json',
+        }
+    )
 }
 
