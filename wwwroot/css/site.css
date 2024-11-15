@@ -295,38 +295,81 @@ input::placeholder{
   display: flex;
   justify-content: space-evenly;
 }
-
+.img-receta{
+  background-size: cover; 
+  background-position: center;
+}
 .card-horizontal{
   display: flex;
   align-items: center;
-  width: 95%;
-  height: 250px;
+  width: 98%;
+  height: 300px;
+  padding: 10px;
+  background-color: #FCD999;
 }
-.card-horizontal img{
-  width: 28%;
+.card-horizontal .img-receta{
+  width: 60%;
   height: 100%;
 }
-.card-horizontal>*:not(img){
-  margin: 20px;
+.card-horizontal>*:not(.img-receta){
+  margin: 0 20px;
 }
 .card-horizontal .estrellas-card-hor{
   display: flex;
   align-items: center;
-  
 }
 .caracteristicas-card-hor{
   display: flex;
   align-items: center;
+  justify-content:space-between;
 }
 .caracteristicas-card-hor div{
-  margin: 0px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.card-horizontal span{
+  font-size: 60px !important;
+}
+.card-horizontal .estrella{
+  font-size: 60px !important;
+}
+.card-horizontal .img-pais{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
 .izq-card-hor{
   display: flex;
   flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  width: 50%;
+}
+.card-horizontal h2{
+  font-size: 55px;
+  font-weight: 500;
+  margin: 0;
+}
+.card-horizontal p{
+  text-wrap: pretty;
+  font-size: 50px;
+}
+.card-horizontal h5{
+  font-size: 25px;
+  margin: 10px 0;
+  font-weight: 400;
+}
+.card-horizontal .estrellas-card-hor h5{
+  margin: 0;
+  margin-top: 3%;
+}
+.card-horizontal .estrellas-card-hor h5{
+  font-size: 40px;
+}
+.social-card-hor .material-symbols-outlined{
+  margin: 30px 0;
+  font-size: 70px !important;
 }
 
 .card{
