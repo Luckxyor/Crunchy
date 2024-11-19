@@ -3,21 +3,37 @@ const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 const buscador = document.getElementById('busqueda');
 const historial = document.querySelector('.historial');
+const requisitos = document.querySelector('.nube-requisitos');
+const passwordField = document.getElementById('Password');
+const errorRequisitos = document.getElementById('errorRequisitos');
+const caracteresEspeciales = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', '|', ':', ';', '"', '<', '>', ',', '.', '?', '/', '`', '~'];
 
-buscador.addEventListener('focus', () => {
-    historial.classList.add('historial-activo');
+if (buscador) {
+    buscador.addEventListener('focus', () => {
+        historial.classList.add('historial-activo');
+    });
+
+    buscador.addEventListener('blur', () => {
+        historial.classList.remove('historial-activo');
+    });
+}
+
+if(requisitos){
+    passwordField.addEventListener('focus', () => {
+        requisitos.classList.add('requisitos-activo');
+    });
+
+    passwordField.addEventListener('blur', () => {
+        requisitos.classList.remove('requisitos-activo');
+    });
+}
+signUpButton.addEventListener('click', () =>{
+    container.classList.add('right-panel-active');
 });
-buscador.addEventListener('blur', () => {
-    historial.classList.remove('historial-activo');
+
+signInButton.addEventListener('click', () => {
+    container.classList.remove('right-panel-active');
 });
-
-signUpButton.addEventListener('click', () =>
-    container.classList.add('right-panel-active')
-);
-
-signInButton.addEventListener('click', () =>
-    container.classList.remove('right-panel-active')
-);
 
 
 function cambiarLike(element, idUsuario, idReceta) {
@@ -28,18 +44,70 @@ function cambiarLike(element, idUsuario, idReceta) {
     } else {
         accion = 'SacarFavorito';
     }
-    element.classList.add('fade-out');
     $.ajax({
         url: `/Home/${accion}`,
         data: { IdReceta: idReceta, IdUsuario: idUsuario },
         type: 'GET',
         dataType: 'json',
-        success: function () {
-            // Opcional: puedes eliminar la clase de desvanecimiento después de un tiempo
-            setTimeout(() => {
-                element.classList.remove('fade-out');
-            }, 500); // 500 ms para coincidir con la duración de la animación
-        }
     });
 }
 
+
+
+function ContraseñaBien() {
+    const largo = document.getElementById('largo');
+    const mayus = document.getElementById('mayus');
+    const especial = document.getElementById('especial');
+
+
+    const longitud = passwordField.value.length >= 8;
+    const mayuscula = passwordField.value !== passwordField.value.toLowerCase();
+    const contieneEspecial = contieneLetraEspecial(passwordField.value, caracteresEspeciales);
+
+
+    if (longitud) {
+        largo.textContent = '✔ Más de 8 caracteres';
+        largo.style.color = 'green';
+    } else {
+        largo.textContent = '✖ Más de 8 caracteres';
+        largo.style.color = 'red';
+    }
+    if (mayuscula) {
+        mayus.textContent = '✔ Mínimo 1 letra mayúscula';
+        mayus.style.color = 'green';
+    } else {
+        mayus.textContent = '✖ Mínimo 1 letra mayúscula';
+        mayus.style.color = 'red';
+    }
+    if (contieneEspecial) {
+        especial.textContent = '✔ Mínimo 1 caracter especial';
+        especial.style.color = 'green';
+    } else {
+        especial.textContent = '✖ Mínimo 1 caracter especial';
+        especial.style.color = 'red';
+    }
+    errorRequisitos.style.display = 'none';
+}
+
+function contieneLetraEspecial(contraseña, caracteresEspeciales) {
+    for (let caracter of caracteresEspeciales) {
+        if (contraseña.includes(caracter)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function validarFormulario() {
+    const longitud = passwordField.value.length >= 8;
+    const mayuscula = passwordField.value !== passwordField.value.toLowerCase();
+    const contieneEspecial = contieneLetraEspecial(passwordField.value, caracteresEspeciales);
+
+
+    if (!(longitud && mayuscula && contieneEspecial)) {
+        errorRequisitos.style.display = 'block';
+        return false;
+    }
+
+    return true;
+}

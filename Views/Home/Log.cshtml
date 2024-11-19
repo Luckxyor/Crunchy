@@ -5,7 +5,7 @@
 <div class="main-login">
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action='@Url.Action("AgregarUsuario", "Account")' method="post">
+            <form action='@Url.Action("AgregarUsuario", "Account")' method="post" onsubmit="return validarFormulario()">
                 <h1>Crea tu Cuenta</h1>
                 <div class="social-container">
                     <a href="#" class="social>">
@@ -21,7 +21,15 @@
                 <span>o usa tu email como registro</span>
                 <input type="text" placeholder="Name" name="Username" required />
                 <input type="email" placeholder="Email" name="Email" required />
-                <input type="password" placeholder="Password" name="Contraseña" required oninput=""/>
+                <div class="parte-contra">
+                    <input type="password" placeholder="Password" name="Contraseña" id="Password" required oninput="ContraseñaBien()"/>
+                    <div class="valid-contra nube-requisitos">
+                        <p id="largo" class="Validacion">✖ Más de 8 caracteres</p>
+                        <p id="mayus" class="Validacion">✖ Mínimo 1 letra mayúscula</p>
+                        <p id="especial" class="Validacion">✖ Mínimo 1 caracter especial</p>
+                    </div>
+                </div>
+                <p class="mensaje-error valid-contra" id="errorRequisitos">Tienes que cumplir con los requisitos de las contraseñas</p>
                 <button type="submit">Registrar</button>
             </form>
         </div>
