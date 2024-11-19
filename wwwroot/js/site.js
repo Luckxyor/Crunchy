@@ -28,14 +28,18 @@ function cambiarLike(element, idUsuario, idReceta) {
     } else {
         accion = 'SacarFavorito';
     }
-
-    $.ajax(
-        {
-            url:`/Home/${accion}`,
-            data:{IdReceta: idReceta, IdUsuario:idUsuario},
-            type: 'GET',
-            dataType: 'json',
+    element.classList.add('fade-out');
+    $.ajax({
+        url: `/Home/${accion}`,
+        data: { IdReceta: idReceta, IdUsuario: idUsuario },
+        type: 'GET',
+        dataType: 'json',
+        success: function () {
+            // Opcional: puedes eliminar la clase de desvanecimiento después de un tiempo
+            setTimeout(() => {
+                element.classList.remove('fade-out');
+            }, 500); // 500 ms para coincidir con la duración de la animación
         }
-    )
+    });
 }
 

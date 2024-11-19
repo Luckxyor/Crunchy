@@ -12,6 +12,12 @@ html {
   font-family: "League Spartan", sans-serif;
   font-weight: 400;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
 @media (min-width: 768px) {
   html {
@@ -245,6 +251,7 @@ input::placeholder{
   background-image: url('/img/headerMain.png');
   background-size: cover;
   background-position: right bottom;
+  background-attachment: fixed;
   color: #fff;
   position: relative;
   height: 80vh;
@@ -278,7 +285,7 @@ input::placeholder{
 }
 
 .main{
-  padding: 0 30px;
+  padding: 0 10%;
 }
 
 .main h2{
@@ -299,20 +306,28 @@ input::placeholder{
   background-size: cover; 
   background-position: center;
 }
+
 .card-horizontal{
   display: flex;
   align-items: center;
   width: 98%;
   height: 300px;
-  padding: 10px;
+  padding: 15px;
   background-color: #FCD999;
+  box-shadow: 0 0 30px #f79b1a5b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+}
+.card-horizontal:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0px 30px #f79b1aaf;
 }
 .card-horizontal .img-receta{
-  width: 60%;
+  width: 90%;
   height: 100%;
 }
 .card-horizontal>*:not(.img-receta){
-  margin: 0 20px;
+  margin: 0 3%;
 }
 .card-horizontal .estrellas-card-hor{
   display: flex;
@@ -344,7 +359,7 @@ input::placeholder{
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  width: 50%;
+  width: 70%;
 }
 .card-horizontal h2{
   font-size: 55px;
@@ -353,7 +368,7 @@ input::placeholder{
 }
 .card-horizontal p{
   text-wrap: pretty;
-  font-size: 50px;
+  font-size: 30px;
 }
 .card-horizontal h5{
   font-size: 25px;
@@ -371,6 +386,7 @@ input::placeholder{
   margin: 30px 0;
   font-size: 70px !important;
 }
+
 
 .card{
   width: 380px;
@@ -709,13 +725,14 @@ button.ghost {
 .categorias{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 50px;
 }
 
 .contenedor-catego{
   width: 100%; 
-  max-width: 420px;
+  max-width: 25%;
+  min-width: 200px;
   border-radius: 15px;
 }
 
@@ -754,7 +771,7 @@ button.ghost {
 }
 
 .circulo-catego h2{
-  font-size: 45px;
+  font-size: 2.8rem;
   font-weight: 500; 
   color: #111; 
 }
