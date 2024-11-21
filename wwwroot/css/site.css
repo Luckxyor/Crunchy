@@ -526,7 +526,7 @@ input::placeholder{
   margin: 20px 0;
 }
 
-.container p {
+.container{
   font-size: 40px;
   font-weight: 100;
 }
@@ -789,7 +789,7 @@ button.ghost {
 
 .mensaje-error{
   color: #f00;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .blob-container {
@@ -873,9 +873,12 @@ button.ghost {
 .valid-contra p {
   color: red;
   font-size: 20px;
+  font-weight: 200;
 }
 .mensaje-error{
   color:red; 
+}
+#errorRequisitos{
   display:none;
 }
 .nube-requisitos{
