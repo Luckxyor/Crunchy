@@ -64,9 +64,32 @@ static class BD{
         List<Receta> ListaBusqueda = new List<Receta>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sql="EXEC sp_ObtenerResultados @pBusqueda, @pIdUsuario;";
-            ListaBusqueda = db.Query<Receta>(sql, new {pBusqueda="%"+busqueda+"%", pIdUsuario=idUsuario}).ToList();
+            ListaBusqueda = db.Query<Receta>(sql, new {pBusqueda=("%"+busqueda+"%"), pIdUsuario=idUsuario}).ToList();
         }
         return ListaBusqueda;
     }
 
+    public static List<Dificultad> ListarDificutades(){
+        List<Dificultad> ListaDificultad = new List<Dificultad>();
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql="Select * from Dificultad";
+            ListaDificultad = db.Query<Dificultad>(sql).ToList();
+        }
+        return ListaDificultad;
+    }
+
+    public static List<Pais> ListarPaises(){
+        List<Pais> ListaPaises = new List<Pais>();
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql="Select * from Paises";
+            ListaPaises = db.Query<Pais>(sql).ToList();
+        }
+        return ListaPaises;
+    }
+    public static void SubirReceta(string FotoReceta, string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, string Ingredientes, string Pasos){
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sqlInsert="Insert into Receta(Foto, NombreReceta, Descripcion, Tiempo, IdDificultad, IdPais, IdCategoria, Ingredientes, Pasos) values (@pFotoReceta, @pNombreReceta, @pDescripcion, @pTiempo, @pIdDificultad, @pIdPais, @pIdCategoria, @pIngredientes, @pPasos)";
+            db.Execute(sqlInsert, new{pFotoReceta=FotoReceta, pNombreReceta=NombreReceta, pDescripcion=Descripcion, pTiempo=Tiempo, pIdDificultad=IdDificultad, pIdPais=IdPais, pIdCategoria=IdCategoria, pIngredientes=Ingredientes, pPasos=Pasos});
+        }
+    }
 }

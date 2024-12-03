@@ -193,6 +193,7 @@ footer img{
   font-size: 18px; 
   padding: 5px;
 }
+
 .contenedor-buscador input::placeholder{
   color: #fbe3c6; ;
 }
@@ -893,4 +894,51 @@ button.ghost {
 }
 .historial-activo, .requisitos-activo{
   display: block;
+}
+
+
+
+.form-receta {
+  display: flex;
+  flex-direction: column;
+  background-color: #FAC172;
+  padding: 40px;
+  border-radius: 40px;
+}
+
+.form-label {
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #000;
+  font-size: 20px;
+}
+
+.form-input,.form-select,.form-textarea {
+  width: 100%;
+  padding: 15px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-family: "League Spartan", sans-serif;
+  font-size: 18px;
+}
+
+.form-textarea {
+  height: 150px;
+  resize: none;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.form-button {
+  padding: 10px 10px;
+  border: none;
+  border-radius: 40px;
+  background-color: #CA4117;
+  color: white;
+  font-size: 35px;
 }

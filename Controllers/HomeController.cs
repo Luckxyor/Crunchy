@@ -33,8 +33,11 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Almacen()
+    public IActionResult AgregarReceta()
     {
+        ViewBag.ListaDificultades=BD.ListarDificutades();
+        ViewBag.ListaCategorias=BD.ListarCategorias();
+        ViewBag.ListaPaises=BD.ListarPaises();
         return View();
     }
 
@@ -56,13 +59,18 @@ public class HomeController : Controller
         return View();
     }
 
-    public void AgregarFavorito(int IdReceta, int IdUsuario)
-    {
+    [HttpPost]
+    public IActionResult SubirReceta(string FotoReceta,string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, string Ingredientes, string Pasos){
+        BD.SubirReceta(FotoReceta, NombreReceta, Descripcion, Tiempo, IdDificultad, IdPais, IdCategoria, Ingredientes, Pasos);
+        return RedirectToAction("Home");
+    }
+
+    public void AgregarFavorito(int IdReceta, int IdUsuario){
         BD.AgregarFavorito(IdUsuario, IdReceta);
     }
 
-    public void SacarFavorito(int IdReceta, int IdUsuario)
-    {
+    public void SacarFavorito(int IdReceta, int IdUsuario){
         BD.SacarFavorito(IdUsuario, IdReceta);
     }
+
 }

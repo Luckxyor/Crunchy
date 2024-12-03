@@ -1,3 +1,4 @@
+namespace Crunchy.Models;
 class Receta{
     public int IdReceta {get; set;}
     public string NombreReceta {get; set;}

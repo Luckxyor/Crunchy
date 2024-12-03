@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "AgregarReceta";
+}
+<div class="main">
+    <h1 class="titulo">Agregar nueva receta</h1>
+    <form method="post" action='@Url.Action("SubirReceta","Home")' id="FormularioAgregar" class="form-receta">
+        <label class="form-label">Foto de la portada
+            <input type="text" name="FotoReceta" placeholder="Introduzca un link de la foto de la receta" required class="form-input">
+        </label>
+        
+        <label class="form-label">Nombre de la receta
+            <input type="text" id="NombreReceta" placeholder="Introduzca el nombre de la receta" name="NombreReceta" required class="form-input">
+        </label>
+
+        <label class="form-label">Descripción
+            <textarea placeholder="Habla un poquito sobre tu comida" name="Descripcion" required class="form-textarea"></textarea>
+        </label>
+
+        <label class="form-label">Tiempo para cocinar (en minutos)
+            <input type="number" name="Tiempo" placeholder="Introduzca los minutos para hacer la receta" required class="form-input">
+        </label>
+
+        <label class="form-label">Dificultad
+            <select name="IdDificultad" required class="form-select">
+                @foreach(Dificultad dificultad in ViewBag.ListaDificultades){
+                    <option value="@dificultad.IdDificultad">@dificultad.NombreDificultad</option>
+                }
+            </select>
+        </label>
+
+        <label class="form-label">Pais de origen
+            <select name="IdPais" required class="form-select">
+                @foreach(Pais pais in ViewBag.ListaPaises){
+                    <option value="@pais.IdPais">@pais.Diminutivo</option>
+                }
+            </select>
+        </label>
+
+        <label class="form-label">Categoria
+            <select name="IdCategoria" required class="form-select">
+                @foreach(Categoria categoria in ViewBag.ListaCategorias){
+                    <option value="@categoria.IdCategoria">@categoria.NombreCategoria</option>
+                }
+            </select>
+        </label>
+
+        <label class="form-label">Ingredientes
+            <textarea name="Ingredientes" placeholder="Por cada ingrediente ingresa su cantidad, el nombre y para separar entre Ingredientes pon una ' , ' (Sin espacios)" required class="form-textarea"></textarea>
+        </label>
+
+        <label class="form-label">Pasos
+            <textarea name="Pasos" placeholder="Por cada paso para separarlos pon una ' , ' (Sin espacios)" required class="form-textarea"></textarea>
+        </label>
+        <div class="form-buttons">
+            <button type="submit" class="form-button">Subir receta</button>
+            <button type="reset" class="form-button">Reiniciar receta</button>
+        </div>
+    </form>
+</div>

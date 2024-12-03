@@ -25,13 +25,13 @@
                     <li class="item-nav"><a href='@Url.Action("Home", "Home")'>Home</a></li>
                     <li class="item-nav"><a href='@Url.Action("Categorias", "Home")'>Categorías</a></li>
                     <li class="item-nav"><a href='@Url.Action("Favoritos", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Favoritos</a></li>
-                    <li class="item-nav"><a href='@Url.Action("Almacen", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Almacén</a></li>
+                    <li class="item-nav"><a href='@Url.Action("AgregarReceta", "Home")'>Agregar Receta</a></li>
                     <div class="buscador-historial">
                         <div class="contenedor-buscador">
                             <div>
                                 <span class="material-symbols-outlined icono-busqueda">search</span>
                                 <form action='@Url.Action("Resultados", "Home")' autocomplete="off">
-                                    <input type="text" id="busqueda" placeholder="Buscar..." name="busqueda">
+                                    <input type="search" id="busqueda" placeholder="Buscar..." name="busqueda">
                                 </form>
                             </div>
                             <span class="material-symbols-outlined icono-filtro">restaurant</span>
