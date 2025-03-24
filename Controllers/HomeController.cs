@@ -38,11 +38,14 @@ public class HomeController : Controller
         ViewBag.ListaDificultades=BD.ListarDificutades();
         ViewBag.ListaCategorias=BD.ListarCategorias();
         ViewBag.ListaPaises=BD.ListarPaises();
+        ViewBag.ListaIngredientes=BD.ListarIngredientes();
+        ViewBag.ListaUnidadesMetricas=BD.ListarUnidadesMetricas();
         return View();
     }
 
-    public IActionResult Perfil()
+    public IActionResult Perfil(int IdUsuario)
     {
+        ViewBag.ListaRecetasFav=BD.ListarRecetasFav(IdUsuario);
         return View();
     }
 
@@ -60,7 +63,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult SubirReceta(string FotoReceta,string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, string Ingredientes, string Pasos){
+    public IActionResult SubirReceta(string FotoReceta,string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, List<IngredienteRecetaModel> Ingredientes, string Pasos){
         BD.SubirReceta(FotoReceta, NombreReceta, Descripcion, Tiempo, IdDificultad, IdPais, IdCategoria, Ingredientes, Pasos);
         return RedirectToAction("Home");
     }

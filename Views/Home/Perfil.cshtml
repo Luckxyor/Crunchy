@@ -1,4 +1,59 @@
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Perfil";
 }
-
+<div class="main">
+    <div class="perfil-pag">
+        <div class="perfil-arriba">
+            <div class="perfil-header">
+                <img src='@HttpContextAccessor.HttpContext.Session.GetString("FotoHeader")' alt="Perfil Header">
+            </div>
+            <div class="perfil-info">
+                <div class="foto-perfil">
+                    <img src='@HttpContextAccessor.HttpContext.Session.GetString("Foto")' alt="Foto de perfil">
+                    <h2>@HttpContextAccessor.HttpContext.Session.GetString("Username")</h2>
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <p>Se unió el @HttpContextAccessor.HttpContext.Session.GetString("FechaCreacion")</p>
+                </div>
+            </div>
+        </div>
+        <div class="perfil-abajo">
+            @foreach(Receta receta in ViewBag.ListaRecetasFav){
+                <div class="card-horizontal">
+                    <div class="img-receta" style="background-image: url('@Url.Content(receta.Foto)');"></div>
+                    <div class="izq-card-hor">
+                        <h2>@receta.NombreReceta</h2>
+                        <div class="estrellas-card-hor">
+                            <span class="material-symbols-outlined estrella estrella-llena">star</span>
+                            <h5>@receta.Calificacion</h5>
+                        </div>
+                        <div class="caracteristicas-card-hor">
+                            <div>
+                                <div class="img-pais" style="background-image: url('@Url.Content(receta.FotoPais)');"></div>
+                                <h5>@receta.DiminutivoPais</h5>
+                            </div>
+                            <div>
+                                <span class="material-symbols-outlined tiempo">schedule</span>
+                                <h5>@receta.Tiempo</h5>
+                            </div>
+                            <div>
+                                <span class="material-symbols-outlined dificultad">speed</span>
+                                <h5>@receta.Dificultad</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <p>@receta.Descripcion</p>
+                    <div class="social-card-hor">
+                        <span class="material-symbols-outlined compartir">share</span>
+                        @if(receta.EsFavorito==1){
+                            <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        }else{
+                            <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                        }
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+</div>

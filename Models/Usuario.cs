@@ -10,4 +10,5 @@ public class Usuario
     public string Username {get; set;}
     public string Foto {get; set;}
     public string FotoHeader {get; set;}
+    public DateTime FechaCreado {get; set;}
 }

@@ -7,6 +7,7 @@ const requisitos = document.querySelector('.nube-requisitos');
 const passwordField = document.getElementById('Password');
 const errorRequisitos = document.getElementById('errorRequisitos');
 const caracteresEspeciales = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', '|', ':', ';', '"', '<', '>', ',', '.', '?', '/', '`', '~'];
+let ingredienteIndex = 1;
 
 if (buscador) {
     buscador.addEventListener('focus', () => {
@@ -110,4 +111,29 @@ function validarFormulario() {
     }
 
     return true;
+}
+
+
+
+function addIngrediente() {
+    let container = document.getElementById("ingredientes-container");
+    let newIndex = ingredienteIndex++;
+
+    let newIngrediente = document.createElement("div");
+    newIngrediente.classList.add("ingrediente-item");
+    newIngrediente.innerHTML = `
+        <select name="Ingredientes[${newIndex}].IdIngrediente" required>
+            ${document.querySelector("select[name='Ingredientes[0].IdIngrediente']").innerHTML}
+        </select>
+        <input type="number" name="Ingredientes[${newIndex}].Cantidad" placeholder="Cantidad" required min="0" step="0.1">
+        <select name="Ingredientes[${newIndex}].IdUnidadMetrica" required>
+            ${document.querySelector("select[name='Ingredientes[0].IdUnidadMetrica']").innerHTML}
+        </select>
+        <button type="button" class="remove-ingrediente button-ingrediente" onclick="removeIngrediente(this)">Eliminar</button>
+    `;
+    container.appendChild(newIngrediente);
+}
+
+function removeIngrediente(button) {
+    button.parentElement.remove();
 }

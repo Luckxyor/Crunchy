@@ -55,7 +55,7 @@
                             <h3>Busquedas recomendadas</h3>
                         </div>
                     </div>
-                    <div class="perfil" onclick="window.location.href='@Url.Action("Perfil", "Home")'">
+                    <div class="perfil" onclick="window.location.href='@Url.Action("Perfil", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'">
                         <p>@HttpContextAccessor.HttpContext.Session.GetString("Username")</p>
                         <img src='@HttpContextAccessor.HttpContext.Session.GetString("Foto")' alt="Perfil">
                     </div>

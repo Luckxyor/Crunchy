@@ -633,6 +633,13 @@ button.ghost {
   border-color: #fff;
 }
 
+.button-ingrediente{
+  width: auto;
+  height: 10%;
+  padding: 5px;
+  font-size: 1em;
+}
+
 .form-container {
   position: absolute;
   top: 0;
