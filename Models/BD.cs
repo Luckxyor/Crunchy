@@ -114,4 +114,14 @@ static class BD{
         }
         return ListaUnidadesMetricas;
     }
+    public static List<Receta> BuscarRecetasPorIngrediente(string busqueda)
+    { 
+         using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sql = @" SELECT * FROM Receta r JOIN IngredientesReceta ir ON r.IdReceta = ir.IdReceta 
+                JOIN Ingredientes i ON ir.IdIngrediente = i.IdIngrediente
+                WHERE i.NombreIngrediente LIKE @pBusqueda";
+            return db.Query<Receta>(sql, new { pBusqueda = "%" + busqueda + "%" }).ToList();
+        }
+    }
 }
