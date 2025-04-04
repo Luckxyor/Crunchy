@@ -116,11 +116,11 @@ function validarFormulario() {
 
 
 function addIngrediente() {
-    let container = document.getElementById("ingredientes-container");
-    let newIndex = ingredienteIndex++;
-
-    let newIngrediente = document.createElement("div");
-    newIngrediente.classList.add("ingrediente-item");
+    const container = document.getElementById("ingredientes-container");
+    const newIndex = container.querySelectorAll('.ingrediente-item').length;
+    
+    const newIngrediente = document.createElement("div");
+    newIngrediente.className = "ingrediente-item";
     newIngrediente.innerHTML = `
         <select name="Ingredientes[${newIndex}].IdIngrediente" required>
             ${document.querySelector("select[name='Ingredientes[0].IdIngrediente']").innerHTML}
@@ -129,11 +129,21 @@ function addIngrediente() {
         <select name="Ingredientes[${newIndex}].IdUnidadMetrica" required>
             ${document.querySelector("select[name='Ingredientes[0].IdUnidadMetrica']").innerHTML}
         </select>
-        <button type="button" class="remove-ingrediente button-ingrediente" onclick="removeIngrediente(this)">Eliminar</button>
+        <button type="button" onclick="removeIngrediente(this)">Eliminar</button>
     `;
     container.appendChild(newIngrediente);
 }
 
 function removeIngrediente(button) {
-    button.parentElement.remove();
+    const container = document.getElementById("ingredientes-container");
+    const item = button.parentElement;
+    container.removeChild(item);
+    
+    // Reindexar todos los ingredientes restantes
+    const items = container.querySelectorAll('.ingrediente-item');
+    items.forEach((item, index) => {
+        item.querySelector('select').name = `Ingredientes[${index}].IdIngrediente`;
+        item.querySelector('input').name = `Ingredientes[${index}].Cantidad`;
+        item.querySelectorAll('select')[1].name = `Ingredientes[${index}].IdUnidadMetrica`;
+    });
 }
