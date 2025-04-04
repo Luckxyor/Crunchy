@@ -26,6 +26,7 @@
                     <li class="item-nav"><a href='@Url.Action("Categorias", "Home")'>Categorías</a></li>
                     <li class="item-nav"><a href='@Url.Action("Favoritos", "Home", new {IdUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")})'>Favoritos</a></li>
                     <li class="item-nav"><a href='@Url.Action("AgregarReceta", "Home")'>Agregar Receta</a></li>
+                    <li class= "item-nav"><a href='@Url.Action("BuscadorRecetas","Home")'>BuscadorRecetas</a></li>
                     <div class="buscador-historial">
                         <div class="contenedor-buscador">
                             <div>

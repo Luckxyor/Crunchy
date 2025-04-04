@@ -61,6 +61,10 @@ public class HomeController : Controller
         ViewBag.ResultadosBusqueda=BD.ObtenerResultados(busqueda, idUsuario);
         return View();
     }
+    /*public IActionResult BuscadorRecetas(string busqueda){
+     
+     return View();   
+    }*/
 
     [HttpPost]
     public IActionResult SubirReceta(string FotoReceta,string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, List<IngredienteRecetaModel> Ingredientes, string Pasos){
