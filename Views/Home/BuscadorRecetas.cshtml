@@ -1,8 +1,15 @@
 @{
     ViewData["Title"] = "BuscadorRecetas";
 }
-
-<label class="form-label">Ingrese el nombre de la receta a buscar
+<form method="post" action='@Url.Action("BuscadorRecetas","Home")'>
+</form>
+<div class="contenedor2-buscador">
+<div>
+<input type="search" id="busqueda" placeholder="Buscar..." name="busqueda">
+</div>
+</div>
+<label class="form-label">Ingrese el nombre del ingrediente para 
+    buscar una receta
 <input type="text" id="busqueda" name="busqueda">
 </label>
 

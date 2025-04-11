@@ -173,6 +173,23 @@ footer img{
 .contenedor-buscador div > *{
   margin: 0 2px;
 }
+.contenedor2-buscador{
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  background: #fde2b34f; 
+  border: 2px solid #6e4711; 
+  border-radius: 40px; 
+  padding: 10px 17px; 
+  width: 100%;
+}
+.contenedor2-buscador div{
+  display: flex;
+  align-items: center;
+}
+.contenedor2-buscador input::placeholder{
+  color: #6d6254; ;
+}
 .icono-filtro{
   transform: rotate(90deg);
 }
