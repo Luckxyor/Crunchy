@@ -2,15 +2,36 @@
     ViewData["Title"] = "BuscadorRecetas";
 }
 <form method="post" action='@Url.Action("BuscadorRecetas","Home")'>
-</form>
 <div class="contenedor2-buscador">
 <div>
 <input type="search" id="busqueda" placeholder="Buscar..." name="busqueda">
 </div>
+<button type="submit">Buscar</button>
 </div>
+</form>
 <label class="form-label">Ingrese el nombre del ingrediente para 
     buscar una receta
 <input type="text" id="busqueda" name="busqueda">
 </label>
 
+@if (ViewBag.ResultadosBusqueda != null)
+{
+    List<Receta> recetas = ViewBag.ResultadosBusqueda as List<Receta>;
+    if (recetas.Any())
+    {
+        <ul>
+            @foreach (Receta receta in recetas)
+            {
+        <li>
+        <div class="img-receta" style="background-image: url('@Url.Content(receta.Foto)');"></div>              
+       <strong>@receta.NombreReceta</strong><br/>
+        @receta.Descripcion
+            </li>
+            }
+        </ul>
+    }
+    else{
+    <p>No se encontraron ingredientes con esa receta</p>
+    }
+    }
 
