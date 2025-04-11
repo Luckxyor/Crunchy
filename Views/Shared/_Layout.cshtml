@@ -1,4 +1,34 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var idUsuario = HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario");
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+    // Páginas que SÍ pueden acceder sin login (públicas)
+    var paginasPermitidasSinLogin = new List<(string Controller, string Action)>
+    {
+        ("Home", "Log"),
+        ("Home", "Index")
+    };
+
+    // ¿Está el usuario logueado?
+    bool usuarioLogueado = idUsuario != null;
+
+    // ¿Está accediendo a una página pública?
+    bool esPaginaPublica = paginasPermitidasSinLogin.Any(p => 
+        p.Controller.Equals(currentController, StringComparison.OrdinalIgnoreCase) &&
+        p.Action.Equals(currentAction, StringComparison.OrdinalIgnoreCase)
+    );
+
+    // Si NO está logueado y NO está en una página pública, redirige al Login
+    if (!usuarioLogueado && !esPaginaPublica)
+    {
+        <script>
+            window.location.href = '@Url.Action("Log", "Home")';
+        </script>
+    }
+}
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,9 +46,8 @@
 </head>
 
 <body>
-    @if (ViewBag.OcultarHeader != true)
-    {
-        <header>
+        @if(ViewBag.OcultarHeader!=true){
+            <header>
             <nav class="main-nav">
                 <ul class="ul__nav">
                     <img src="~/img/logo.png" alt="Logo">
@@ -63,7 +92,8 @@
                 </ul>
             </nav>
         </header>
-    }
+        }
+    
 
 
     <main role="main">

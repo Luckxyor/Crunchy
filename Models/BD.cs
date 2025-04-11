@@ -86,18 +86,39 @@ static class BD{
         }
         return ListaPaises;
     }
-    public static void SubirReceta(string FotoReceta, string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, List<IngredienteRecetaModel> Ingredientes, string Pasos){
-        using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sqlInsert="Insert into Receta(Foto, NombreReceta, Descripcion, Tiempo, IdDificultad, IdPais, IdCategoria, Pasos) values (@pFotoReceta, @pNombreReceta, @pDescripcion, @pTiempo, @pIdDificultad, @pIdPais, @pIdCategoria, @pPasos)";
-            db.Execute(sqlInsert, new{pFotoReceta=FotoReceta, pNombreReceta=NombreReceta, pDescripcion=Descripcion, pTiempo=Tiempo, pIdDificultad=IdDificultad, pIdPais=IdPais, pIdCategoria=IdCategoria, pPasos=Pasos});
-            int IdReceta = db.QueryFirstOrDefault<int>("SELECT TOP 1 IdReceta FROM Receta ORDER BY IdReceta DESC;");
-            foreach (IngredienteRecetaModel   ingrediente in Ingredientes)
+    public static void SubirReceta(string FotoReceta, string NombreReceta, string Descripcion, int Tiempo, int IdDificultad, int IdPais, int IdCategoria, List<IngredienteRecetaModel> Ingredientes, string Pasos)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            int IdReceta = db.QueryFirstOrDefault<int>(
+                "EXEC InsertarReceta @Foto, @NombreReceta, @Descripcion, @Tiempo, @IdDificultad, @IdPais, @IdCategoria, @Pasos",
+                new
+                {
+                    Foto = FotoReceta,
+                    NombreReceta,
+                    Descripcion,
+                    Tiempo = Tiempo.ToString(),
+                    IdDificultad,
+                    IdPais,
+                    IdCategoria,
+                    Pasos
+                });
+
+            foreach (var ingrediente in Ingredientes)
             {
-                string sqlInsertIngrediente="Insert into IngredientesReceta(IdReceta, IdIngrediente, Cantidad, IdUnidadMetrica) values (@pIdReceta, @pIdIngrediente, @pCantidad, @pIdUnidadMetrica)";
-                db.Execute(sqlInsertIngrediente, new{pIdReceta=IdReceta, pIdIngrediente=ingrediente.IdIngrediente, pCantidad=ingrediente.Cantidad, pIdUnidadMetrica=ingrediente.IdUnidadMetrica});
+                db.Execute(
+                    "EXEC InsertarIngredienteReceta @IdReceta, @IdIngrediente, @Cantidad, @IdUnidadMetrica",
+                    new
+                    {
+                        IdReceta,
+                        ingrediente.IdIngrediente,
+                        ingrediente.Cantidad,
+                        ingrediente.IdUnidadMetrica
+                    });
             }
         }
     }
+
     public static List<Ingrediente> ListarIngredientes(){
         List<Ingrediente> ListaIngredientes = new List<Ingrediente>();
         using(SqlConnection db = new SqlConnection(_connectionString)){

@@ -16,6 +16,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewBag.OcultarHeader = true;
+        ViewBag.preLogin=true;
         return View();
     }
     public IActionResult Home()
@@ -52,6 +53,7 @@ public class HomeController : Controller
     public IActionResult Log(string mensajeError)
     {
         ViewBag.OcultarHeader = true;
+        ViewBag.preLogin=true;
         ViewBag.mensajeError = mensajeError;
         return View();
     }
