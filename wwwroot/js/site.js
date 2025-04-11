@@ -122,14 +122,14 @@ function addIngrediente() {
     const newIngrediente = document.createElement("div");
     newIngrediente.className = "ingrediente-item";
     newIngrediente.innerHTML = `
-        <select name="Ingredientes[${newIndex}].IdIngrediente" required>
-            ${document.querySelector("select[name='Ingredientes[0].IdIngrediente']").innerHTML}
-        </select>
-        <input type="number" name="Ingredientes[${newIndex}].Cantidad" placeholder="Cantidad" required min="0" step="0.1">
-        <select name="Ingredientes[${newIndex}].IdUnidadMetrica" required>
-            ${document.querySelector("select[name='Ingredientes[0].IdUnidadMetrica']").innerHTML}
-        </select>
-        <button type="button" onclick="removeIngrediente(this)">Eliminar</button>
+    <select name="Ingredientes[${newIndex}].IdIngrediente" required class="ingrediente-select">
+        ${document.querySelector("select[name='Ingredientes[0].IdIngrediente']").innerHTML}
+    </select>
+    <input type="number" name="Ingredientes[${newIndex}].Cantidad" placeholder="Cantidad" required min="0" step="0.1" class="ingrediente-cantidad">
+    <select name="Ingredientes[${newIndex}].IdUnidadMetrica" required class="ingrediente-unidad">
+        ${document.querySelector("select[name='Ingredientes[0].IdUnidadMetrica']").innerHTML}
+    </select>
+    <button type="button" class="button-ingrediente" onclick="removeIngrediente(this)">Eliminar</button>
     `;
     container.appendChild(newIngrediente);
 }
@@ -139,7 +139,6 @@ function removeIngrediente(button) {
     const item = button.parentElement;
     container.removeChild(item);
     
-    // Reindexar todos los ingredientes restantes
     const items = container.querySelectorAll('.ingrediente-item');
     items.forEach((item, index) => {
         item.querySelector('select').name = `Ingredientes[${index}].IdIngrediente`;
