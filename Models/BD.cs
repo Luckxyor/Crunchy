@@ -64,7 +64,7 @@ static class BD{
         List<Receta> ListaBusqueda = new List<Receta>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
             string sql="EXEC sp_ObtenerResultados @pBusqueda, @pIdUsuario;";
-            ListaBusqueda = db.Query<Receta>(sql, new {pBusqueda=("%"+busqueda+"%"), pIdUsuario=idUsuario}).ToList();
+            ListaBusqueda = db.Query<Receta>(sql, new { pBusqueda = busqueda, pIdUsuario = idUsuario }).ToList();
         }
         return ListaBusqueda;
     }
