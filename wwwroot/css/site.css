@@ -210,6 +210,14 @@ footer img{
   font-size: 18px; 
   padding: 5px;
 }
+#busqueda2{
+  border: none; 
+  outline: none; 
+  background: transparent; 
+  color: #3d2709; 
+  font-size: 28px; 
+  padding: 5px;
+}
 
 .contenedor-buscador input::placeholder{
   color: #fbe3c6; ;

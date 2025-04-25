@@ -63,7 +63,7 @@ public class HomeController : Controller
         ViewBag.ResultadosBusqueda=BD.ObtenerResultados(busqueda, idUsuario);
         return View();
     }
-     public IActionResult BuscadorRecetas(string busqueda){  
+     public IActionResult BuscadorIngredientes(string busqueda){  
     int? idUsuario = HttpContext.Session.GetInt32("IdUsuario");   
     ViewBag.ResultadosBusqueda=BD.BuscarRecetasPorIngrediente(busqueda);
      return View();   
