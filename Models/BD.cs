@@ -122,7 +122,7 @@ static class BD{
     public static List<Ingrediente> ListarIngredientes(){
         List<Ingrediente> ListaIngredientes = new List<Ingrediente>();
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            string sql="Select * from Ingredientes";
+            string sql="Select * from Ingredientes order by NombreIngrediente";
             ListaIngredientes = db.Query<Ingrediente>(sql).ToList();
         }
         return ListaIngredientes;
@@ -135,14 +135,16 @@ static class BD{
         }
         return ListaUnidadesMetricas;
     }
-    public static List<Receta> BuscarRecetasPorIngrediente(string busqueda)
-    { 
-         using (SqlConnection db = new SqlConnection(_connectionString))
+    public static List<Receta> BuscarRecetasPorIngredientes(List<int> ingredientesSeleccionados, int? idUsuario)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            string sql = @" SELECT * FROM Receta r JOIN IngredientesReceta ir ON r.IdReceta = ir.IdReceta 
-                JOIN Ingredientes i ON ir.IdIngrediente = i.IdIngrediente
-                WHERE i.NombreIngrediente LIKE @pBusqueda";
-            return db.Query<Receta>(sql, new { pBusqueda = "%" + busqueda + "%" }).ToList();
+            // Convertir la lista de ingredientes en una cadena separada por comas
+            string ingredientes = string.Join(",", ingredientesSeleccionados);
+
+            // Ejecutar el procedimiento almacenado
+            string sql = "EXEC sp_BuscarRecetasPorIngredientes @IngredientesSeleccionados, @IdUsuario";
+            return db.Query<Receta>(sql, new { IngredientesSeleccionados = ingredientes, IdUsuario = idUsuario }).ToList();
         }
     }
 }

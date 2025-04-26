@@ -63,10 +63,19 @@ public class HomeController : Controller
         ViewBag.ResultadosBusqueda=BD.ObtenerResultados(busqueda, idUsuario);
         return View();
     }
-     public IActionResult BuscadorIngredientes(string busqueda){  
-    int? idUsuario = HttpContext.Session.GetInt32("IdUsuario");   
-    ViewBag.ResultadosBusqueda=BD.BuscarRecetasPorIngrediente(busqueda);
-     return View();   
+    public IActionResult BuscadorIngredientes()
+    {
+        ViewBag.ListaIngredientes = BD.ListarIngredientes(); // Obtener lista de ingredientes
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult BuscadorIngredientes(List<int> IngredientesSeleccionados)
+    {
+        int? idUsuario = HttpContext.Session.GetInt32("IdUsuario");
+        ViewBag.ListaIngredientes = BD.ListarIngredientes(); // Obtener lista de ingredientes
+        ViewBag.ResultadosBusqueda = BD.BuscarRecetasPorIngredientes(IngredientesSeleccionados, idUsuario); // Buscar recetas
+        return View();
     }
 
     [HttpPost]

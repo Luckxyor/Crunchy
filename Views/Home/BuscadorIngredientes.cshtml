@@ -1,37 +1,87 @@
 @{
-    ViewData["Title"] = "BuscadorIngredientes";
+    ViewData["Title"] = "Buscador por Ingredientes";
+    
 }
-<form method="post" action='@Url.Action("BuscadorIngredientes","Home")'>
-<div class="contenedor2-buscador">
-<div>
-<input type="search" id="busqueda2" placeholder="Buscar..." name="busqueda" class="cla">
-</div>
-<button type="submit">Buscar</button>
-</div>
-</form>
-<label class="form-label">Ingrese el nombre del ingrediente para 
-    buscar una receta
-<input type="text" id="busqueda" name="busqueda">
-</label>
+@inject IHttpContextAccessor HttpContextAccessor;
+<div class="main">
+    <h1>Buscador ingredientes</h1>
+    <form method="post" action='@Url.Action("BuscadorIngredientes", "Home")' class="form-receta">
+            <label class="form-label">Seleccione los ingredientes:</label>
+            <div id="ingredientes-container">
+                <div class="ingrediente-item">
+                    <select name="IngredientesSeleccionados[0]" required class="ingrediente-select">
+                        @foreach (Ingrediente ingrediente in ViewBag.ListaIngredientes)
+                        {
+                            <option value="@ingrediente.IdIngrediente">@ingrediente.NombreIngrediente</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <button type="button" id="add-ingrediente" class="button-ingrediente" onclick="addIngrediente()">Agregar Ingrediente</button>
+            <button type="submit" class="form-button">Buscar Recetas</button>
+    </form>
 
-@if (ViewBag.ResultadosBusqueda != null)
-{
-    List<Receta> recetas = ViewBag.ResultadosBusqueda as List<Receta>;
-    if (recetas.Any())
+    @if (ViewBag.ResultadosBusqueda != null)
     {
-        <ul>
-            @foreach (Receta receta in recetas)
-            {
-        <li>
-        <div class="img-receta" style="background-image: url('@Url.Content(receta.Foto)');"></div>              
-       <strong>@receta.NombreReceta</strong><br/>
-        @receta.Descripcion
-            </li>
-            }
-        </ul>
-    }
-    else{
-    <p>No se encontraron ingredientes con esa receta</p>
-    }
-    }
+        @foreach (Receta receta in ViewBag.ResultadosBusqueda)
+        {
+            <div class="card">
+                <img src="@receta.Foto" alt="">
+                <div class="parte-abajo-card">
+                    <div class="social-card">
+                        <div class="estrellas">
+                            @{
+                                int estrellasRestantes = 5;
+                                int estrellasLlenas = (int)receta.Calificacion;
+                                bool tieneMediaEstrella = (receta.Calificacion - estrellasLlenas) >= 0.5;
 
+                                for (int i = 0; i < estrellasLlenas; i++)
+                                {
+                                    <span class="material-symbols-outlined estrella estrella-llena">star</span>
+                                }
+
+                                if (tieneMediaEstrella)
+                                {
+                                    <span class="material-symbols-outlined estrella estrella-mediollena">star_half</span>
+                                    estrellasRestantes--;
+                                }
+
+                                for (int i = 0; i < estrellasRestantes - estrellasLlenas; i++)
+                                {
+                                    <span class="material-symbols-outlined estrella estrella-vacia">star</span>
+                                }
+                            }
+                        </div>
+                        <div class="der-social">
+                            <span class="material-symbols-outlined compartir">share</span>
+                            @if(receta.EsFavorito==1){
+                                <span class="material-symbols-outlined like like-lleno" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                            }else{
+                                <span class="material-symbols-outlined like" onclick="cambiarLike(this, @(HttpContextAccessor.HttpContext.Session.GetInt32("IdUsuario")), @receta.IdReceta)">favorite</span>
+                            }
+                        </div>
+                    </div>
+                    <h3>@receta.NombreReceta</h3>
+                    <p>@receta.Descripcion</p>
+                    <div class="caracteristicas-card">
+                        <div>
+                            <div class="img-pais" style="background-image: url('@Url.Content(receta.FotoPais)');"></div>
+                            <h5>@receta.DiminutivoPais</h5>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined tiempo">schedule</span>
+                            <h5>@receta.Tiempo Min</h5>
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined dificultad">speed</span>
+                            <h5>@receta.Dificultad</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }else
+    {
+        <p>No se encontraron recetas con los ingredientes seleccionados.</p>
+    }
+</div>
